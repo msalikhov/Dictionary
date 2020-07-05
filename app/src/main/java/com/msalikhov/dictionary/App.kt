@@ -1,7 +1,11 @@
 package com.msalikhov.dictionary
 
 import android.app.Application
+import com.msalikhov.dictionary.domain.NetworkProvider
+import com.msalikhov.dictionary.domain.RepositoryImpl
+import com.msalikhov.dictionary.viewmodel.WordsSearchViewModel
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
@@ -16,7 +20,11 @@ class App: Application() {
         startKoin {
             androidContext(this@App)
             modules(module {
-                single {  }
+                single { NetworkProvider.getOkHttp() }
+                single { NetworkProvider.getRetrofit(get())}
+                single { NetworkProvider.getNetworkApi(get())}
+                single { RepositoryImpl.create(get()) }
+                viewModel { WordsSearchViewModel(get()) }
             })
         }
     }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dictionary</string>
+    <string name="search_hint">Что ищем?</string>
 </resources>
