@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.msalikhov.dictionary.domain.Repository
 import com.msalikhov.dictionary.entity.Word
 import com.msalikhov.dictionary.utils.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class WordsSearchViewModel(
@@ -19,9 +20,9 @@ class WordsSearchViewModel(
         //todo distinct
         //todo debounce
         //todo paging
+        //todo caching?
         viewModelScope.launch {
-            _foundWords.empty()
-            _foundWords.value = wrapResult {
+            _foundWords.wrap {
                 repository.searchWords(query)
             }
         }

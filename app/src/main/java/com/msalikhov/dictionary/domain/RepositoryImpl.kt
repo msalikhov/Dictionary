@@ -6,6 +6,10 @@ class RepositoryImpl private constructor(private val networkApi: NetworkApi) : R
     companion object {
         fun create(networkApi: NetworkApi): Repository = RepositoryImpl(networkApi)
     }
-    override suspend fun searchWords(query: String): List<Word> =
+
+    override suspend fun searchWords(query: String): List<Word> = if (query.isNotBlank()) {
         networkApi.searchWords(query)
+    } else {
+        emptyList()
+    }
 }

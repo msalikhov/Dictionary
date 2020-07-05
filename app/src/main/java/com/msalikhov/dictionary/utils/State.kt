@@ -18,10 +18,14 @@ fun <T> MutableStateLiveData<T>.empty() {
     this.value = State.Empty
 }
 
-inline fun <T> wrapResult(action: ()->T): State<T> = try {
-    State.Success(action())
-} catch (t: Throwable) {
-    State.Error(t)
+inline fun <T> MutableStateLiveData<T>.wrap(provider: ()->T) {
+    empty()
+
+    try {
+        success(provider())
+    } catch (t: Throwable) {
+        error(t)
+    }
 }
 
 sealed class State<out T> {
@@ -35,5 +39,17 @@ sealed class State<out T> {
         is Success -> mapper(data)
         is Error -> this
         is Empty -> this
+    }
+
+    inline fun doOn(
+        onSuccess: (T) -> Unit = {},
+        onError: (Throwable) -> Unit = {},
+        onEmpty: () -> Unit = {}
+    ) {
+        when (this) {
+            is Success -> onSuccess(data)
+            is Error -> onError(data)
+            is Empty -> onEmpty()
+        }
     }
 }
