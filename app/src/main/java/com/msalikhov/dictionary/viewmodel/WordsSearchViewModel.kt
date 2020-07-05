@@ -31,7 +31,6 @@ class WordsSearchViewModel(
         .asLiveData()
 
     fun searchWords(query: String) {
-        //todo caching?
         viewModelScope.launch {
             queryChannel.send(query)
         }

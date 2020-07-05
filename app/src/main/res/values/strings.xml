@@ -2,4 +2,9 @@
     <string name="app_name">Dictionary</string>
     <string name="search_hint">Что ищем?</string>
     <string name="default_error_description">Что-то пошло не так</string>
+    <string name="meanings">Значения</string>
+    <string name="part_of_speech">Часть речи: %1$s</string>
+    <string name="translation">Перевод: %1$s</string>
+    <string name="transcription">Транскрипция: %1$s</string>
+
 </resources>

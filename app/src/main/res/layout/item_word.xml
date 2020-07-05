@@ -6,7 +6,7 @@
     android:background="?selectableItemBackground"
     android:paddingHorizontal="@dimen/padding_default"
     android:paddingVertical="@dimen/padding_half"
-    android:textColor="@android:color/black"
+    style="@style/SubTitle"
     tools:text="Hello world">
 
 </TextView>

@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
         supportFragmentManager.addOnBackStackChangedListener(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        onBackStackChanged()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

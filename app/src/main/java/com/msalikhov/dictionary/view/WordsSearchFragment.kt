@@ -61,7 +61,7 @@ class WordsSearchFragment : Fragment(R.layout.fragment_words_search) {
                     .replace(
                         R.id.fragmentContainer,
                         WordDescriptionFragment::class.java,
-                        bundleOf(WordDescriptionFragment.WORD_ID to word.id)
+                        bundleOf(WordDescriptionFragment.WORD_ARG to word)
                     )
                     .addToBackStack(WordDescriptionFragment::class.java.simpleName)
                     .commit()
