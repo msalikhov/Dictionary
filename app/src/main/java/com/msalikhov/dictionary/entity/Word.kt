@@ -5,7 +5,7 @@ import com.msalikhov.dictionary.utils.ListAdapterBuilder
 data class Word(
     val id: Int,
     val text: String,
-    val meaning: List<Meaning>
+    val meanings: List<Meaning>
 ): ListAdapterBuilder.Diffable<Word> {
     override fun areItemsTheSame(item: Word) = id == item.id
 
