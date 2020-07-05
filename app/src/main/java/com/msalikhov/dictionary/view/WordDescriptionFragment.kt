@@ -11,15 +11,13 @@ import com.msalikhov.dictionary.entity.Word
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_word_description.*
 import kotlinx.android.synthetic.main.item_meaning.view.*
-import org.koin.android.ext.android.inject
 
-class WordDescriptionFragment : Fragment(R.layout.fragment_word_description) {
+class WordDescriptionFragment(private val picasso: Picasso) :
+    Fragment(R.layout.fragment_word_description) {
 
     companion object {
         const val WORD_ARG = "arg_word"
     }
-
-    private val picasso: Picasso by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val word = arguments?.getParcelable<Word>(WORD_ARG) ?: return
