@@ -7,10 +7,10 @@
 Для сборки и запуска использовать AndroidStudio 4.0+ и android смартфон с android 5.0+
 
 
-Стек - kotlin, coroutines, koin, androidx, retrofit2, okhttp3, picasso, gson, junit
+## Стек - kotlin, coroutines, koin, androidx, retrofit2, okhttp3, picasso, gson, junit
 
 
-Зависимости:
+## Зависимости:
 
 kotlinx-coroutines - корутины для асинхронной работы
 
@@ -36,7 +36,7 @@ gson - парсинг json
 
 junit - unit-тесты
 
-Скриншоты
+## Скриншоты
 
 <p align="center">
   <img src="https://github.com/msalikhov/Dictionary/blob/master/screenshots/Screenshot_1594019626.png" width="350">
