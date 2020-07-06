@@ -6,10 +6,6 @@
 
 Для сборки и запуска использовать AndroidStudio 4.0+ и android смартфон с android 5.0+
 
-
-## Стек - kotlin, coroutines, koin, androidx, retrofit2, okhttp3, picasso, gson, junit
-
-
 ## Зависимости:
 
 kotlinx-coroutines - корутины для асинхронной работы
