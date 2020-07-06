@@ -5,34 +5,26 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.msalikhov.dictionary.Constants
 import com.msalikhov.dictionary.domain.Repository
-import com.msalikhov.dictionary.utils.stateFlow
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.asFlow
+import com.msalikhov.dictionary.utils.wrapWithState
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.launch
 
-class WordsSearchViewModel(
-    private val repository: Repository
-) : ViewModel() {
+class WordsSearchViewModel(private val repository: Repository) : ViewModel() {
 
-    private val queryChannel = BroadcastChannel<String>(Channel.CONFLATED)
-    val foundWords = queryChannel
-        .asFlow()
+    private val queryChannel = MutableStateFlow("")
+    val foundWords = this.queryChannel
         .debounce(Constants.NETWORK_DEBOUNCE)
         .distinctUntilChanged()
-        .flatMapLatest { query->
-            stateFlow {
-                repository.searchWords(query)
+        .flatMapLatest {
+            wrapWithState {
+                repository.searchWords(it)
             }
         }
-        .asLiveData()
+        .asLiveData(viewModelScope.coroutineContext)
 
     fun searchWords(query: String) {
-        viewModelScope.launch {
-            queryChannel.send(query)
-        }
+        this.queryChannel.value = query
     }
 }

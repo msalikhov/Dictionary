@@ -2,7 +2,7 @@ package com.msalikhov.dictionary.utils
 
 import kotlinx.coroutines.flow.flow
 
-fun <T> stateFlow(block: suspend () -> T) = flow {
+fun <T> wrapWithState(block: suspend () -> T) = flow {
     emit(State.Empty)
     try {
         emit(State.Success(block()))
