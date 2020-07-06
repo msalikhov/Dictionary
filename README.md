@@ -38,5 +38,7 @@ junit - unit-тесты
 
 Скриншоты
 
-![alt text](https://github.com/msalikhov/Dictionary/blob/master/screenshots/Screenshot_1594019626.png?raw=true)
-![alt text](https://github.com/msalikhov/Dictionary/blob/master/screenshots/Screenshot_1594019635.png?raw=true)
+<p align="center">
+  <img src="https://github.com/msalikhov/Dictionary/blob/master/screenshots/Screenshot_1594019626.png" width="350">
+  <img src="https://github.com/msalikhov/Dictionary/blob/master/screenshots/Screenshot_1594019635.png" width="350">
+</p>
