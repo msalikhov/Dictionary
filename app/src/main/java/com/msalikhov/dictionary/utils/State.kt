@@ -11,20 +11,10 @@ fun <T> wrapWithState(block: suspend () -> T) = flow {
     }
 }
 
+val <T> T.exhaustive get() = this
+
 sealed class State<out T> {
     data class Success<T>(val data: T) : State<T>()
     data class Error(val data: Throwable) : State<Nothing>()
     object Empty : State<Nothing>()
-
-    inline fun doOn(
-        onSuccess: (T) -> Unit = {},
-        onError: (Throwable) -> Unit = {},
-        onEmpty: () -> Unit = {}
-    ) {
-        when (this) {
-            is Success -> onSuccess(data)
-            is Error -> onError(data)
-            is Empty -> onEmpty()
-        }
-    }
 }

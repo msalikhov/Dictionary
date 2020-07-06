@@ -12,10 +12,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.msalikhov.dictionary.R
 import com.msalikhov.dictionary.entity.Word
-import com.msalikhov.dictionary.utils.ListAdapterBuilder
-import com.msalikhov.dictionary.utils.State
-import com.msalikhov.dictionary.utils.describeError
-import com.msalikhov.dictionary.utils.showToast
+import com.msalikhov.dictionary.utils.*
 import com.msalikhov.dictionary.viewmodel.WordsSearchViewModel
 import kotlinx.android.synthetic.main.fragment_words_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,11 +32,21 @@ class WordsSearchFragment : Fragment(R.layout.fragment_words_search) {
     }
 
     private fun onFoundWordsStateChanged(state: State<List<Word>>) {
-        progressBar.isVisible = state is State.Empty
-        state.doOn(
-            onSuccess = { wordsAdapter.submitList(it) },
-            onError = { context?.showToast(it.describeError(resources)) }
-        )
+        when (state) {
+            is State.Success -> {
+                progressBar.isVisible = false
+                wordsAdapter.submitList(state.data)
+            }
+            is State.Error -> {
+                progressBar.isVisible = false
+                wordsAdapter.submitList(emptyList())
+                context?.showToast(state.data.describeError(resources))
+            }
+            is State.Empty -> {
+                progressBar.isVisible = true
+                wordsAdapter.submitList(emptyList())
+            }
+        }.exhaustive
     }
 
     private fun createWordViewHolder(view: View) =
