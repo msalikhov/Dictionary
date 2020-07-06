@@ -35,3 +35,8 @@ picasso - загрузка картинок
 gson - парсинг json
 
 junit - unit-тесты
+
+Скриншоты
+
+![alt text](https://github.com/msalikhov/Dictionary/blob/master/screenshots/Screenshot_1594019626.png?raw=true)
+![alt text](https://github.com/msalikhov/Dictionary/blob/master/screenshots/Screenshot_1594019635.png?raw=true)
