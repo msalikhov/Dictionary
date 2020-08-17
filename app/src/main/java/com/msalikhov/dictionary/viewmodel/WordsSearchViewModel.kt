@@ -1,8 +1,6 @@
 package com.msalikhov.dictionary.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
 import com.msalikhov.dictionary.Constants
 import com.msalikhov.dictionary.domain.Repository
 import com.msalikhov.dictionary.utils.wrapWithState
@@ -22,7 +20,6 @@ class WordsSearchViewModel(private val repository: Repository) : ViewModel() {
                 repository.searchWords(it)
             }
         }
-        .asLiveData(viewModelScope.coroutineContext)
 
     fun searchWords(query: String) {
         this.queryChannel.value = query

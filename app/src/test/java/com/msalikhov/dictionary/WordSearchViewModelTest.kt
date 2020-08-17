@@ -1,7 +1,6 @@
 package com.msalikhov.dictionary
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.asFlow
 import com.msalikhov.dictionary.domain.Repository
 import com.msalikhov.dictionary.entity.Word
 import com.msalikhov.dictionary.utils.State
@@ -30,7 +29,7 @@ class WordSearchViewModelTest : Assert() {
         }
         val vm = WordsSearchViewModel(repo)
         coroutinesRule.testDispatcher.runBlockingTest {
-            val flow = vm.foundWords.asFlow().take(2)
+            val flow = vm.foundWords.take(2)
             vm.searchWords("")
             val expected = listOf(State.Empty, State.Success(emptyList<Word>()))
             assertEquals(expected, flow.toList())
@@ -47,7 +46,7 @@ class WordSearchViewModelTest : Assert() {
         }
         val vm = WordsSearchViewModel(repo)
         coroutinesRule.testDispatcher.runBlockingTest {
-            val flow = vm.foundWords.asFlow().take(2)
+            val flow = vm.foundWords.take(2)
             vm.searchWords("")
             val expected = listOf(State.Empty, State.Error(error))
             assertEquals(expected, flow.toList())
